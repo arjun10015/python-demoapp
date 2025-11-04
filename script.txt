@@ -1,0 +1,15 @@
+// copy paste during pipeline creation process in script section
+
+pipeline {
+  agent any
+  stages {
+    stage('Deploy Docker') {
+      steps {
+        bat 'docker pull arjun10015/python-demoapp:latest'
+        bat 'docker stop python-demoapp || exit 0'
+        bat 'docker rm python-demoapp || exit 0'
+        bat 'docker run -d --name python-demoapp -p 5000:5000 arjun10015/python-demoapp:latest'
+      }
+    }
+  }
+}
