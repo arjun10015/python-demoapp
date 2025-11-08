@@ -1,5 +1,5 @@
 // copy paste during CI pipeline creation process in script section for ex4 (windows os)
-
+// if required change user id based on ur docker credentials
 pipeline {
   agent any
   stages {
@@ -28,7 +28,7 @@ pipeline {
 
 
 // copy paste during CD pipeline creation process in script section for ex5 (windows os)
-
+// if required change user id based on ur docker credentials
 pipeline {
   agent any
   stages {
