@@ -44,3 +44,15 @@ pipeline {
     }
   }
 }
+
+//ansible
+
+nano playbook01.yml
+
+- hosts: localhost
+ tasks:
+ - name: Print message
+  debug:
+   msg: Hello Ansible World
+
+ansible-playbook -i inventory playbook-01.yml -u sammy
