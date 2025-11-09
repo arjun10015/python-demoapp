@@ -56,3 +56,67 @@ nano playbook01.yml
    msg: Hello Ansible World
 
 ansible-playbook -i inventory playbook-01.yml -u sammy
+
+//ansible.app
+
+sudo apt update
+sudo apt install -y ansible
+ansible --version
+
+mkdir ~/ansible-lab8
+cd ~/ansible-lab8
+
+ansible-galaxy init prerequisites
+ansible-galaxy init postgresql
+ansible-galaxy init apache
+
+/prerequisites/tasks/
+
+sudo vim main.yml
+
+- name: Update apt and install git
+  become: true
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+shift+esc+; and press wq to save
+
+/postgresql/tasks/
+
+sudo vim main.yml
+
+- name: Install PostgreSQL
+  become: true
+  apt:
+    name: postgresql
+    state: present
+    update_cache: yes
+
+shift+esc+; and press wq to save
+
+/apache/tasks/
+
+sudo vim main.yml
+
+- name: Install Apache2
+  become: true
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+shift+esc+; and press wq to save
+
+nano stack.yml (~/ansible-lab8) 
+
+- hosts: localhost
+  become: true
+  connection: local
+  roles:
+    - prerequisites
+    - postgresql
+    - apache
+
+ansible-playbook stack.yml
